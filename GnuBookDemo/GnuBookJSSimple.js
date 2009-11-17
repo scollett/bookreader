@@ -19,10 +19,11 @@ gb.getPageHeight = function(index) {
 // We load the images from archive.org -- you can modify this function to retrieve images
 // using a different URL structure
 gb.getPageURI = function(index) {
-    var leafStr = '000';            
+    var leafStr = '000';
     var imgStr = (index+1).toString();
+	if (index > 14) imgStr = '14';
     var re = new RegExp("0{"+imgStr.length+"}$");
-    var url = 'http://www.archive.org/download/GnuBook/img/page'+leafStr.replace(re, imgStr) + '.jpg';
+    var url = 'pages/page'+leafStr.replace(re, imgStr) + '.jpg';
     return url;
 }
 
@@ -70,15 +71,19 @@ gb.getSpreadIndices = function(pindex) {
 // For example, index 5 might correspond to "Page 1" if there is front matter such
 // as a title page and table of contents.
 gb.getPageNum = function(index) {
-    return index+1;
+	return index+1;
 }
 
 // Total number of leafs
-gb.numLeafs = 15;
+gb.numLeafs = 60;
 
 // Book title and the URL used for the book title link
 gb.bookTitle= 'Open Library Bookreader Presentation';
 gb.bookUrl  = 'http://openlibrary.org';
+
+// thumbnail view
+gb.mode = 3;
+gb.thumbScale = 8;
 
 // Let's go!
 gb.init();
